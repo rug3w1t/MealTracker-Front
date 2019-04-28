@@ -1,3 +1,5 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.thymeleaf.org ">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,10 @@
 <body>
 
     <h1> MEAL TRACKER </h1>
-    <h2> OMG </h2>
+    <form action="#" th:action="@{/add-note}" th:object="${note}" method="post">
+        <input type="text"  />
+        <input type="submit" />
+      </form>
 
 </body>
 </html>
