@@ -9,10 +9,11 @@
 <body>
 
     <h1> MEAL TRACKER </h1>
-    <form action="#" th:action="@{/add-note}" th:object="${note}" method="post">
-        <input type="text"  />
-        <input type="submit" />
-      </form>
+    <form action="#" th:action="@{/processForm}" th:object="${simpleNote}"  method="post">
+        <input type="hidden" th:filed="*{id}"/>
+        <p> <input type="text" th:field="*{textFiled}" /> </p>
+        <p> <input type="submit"/> </p>
+    </form>
 
 </body>
 </html>
