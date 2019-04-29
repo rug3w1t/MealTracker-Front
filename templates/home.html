@@ -15,7 +15,37 @@
         <p> <input type="submit"/> </p>
     </form>
     <hr>
+    <h3>Add new Day</h3>
+    <form action="#" th:action="@{/addDay}" th:object="${dayField}"  method="post">
+        <input type="hidden" th:filed="*{id}"/>
+        <p> <input type="text" th:field="*{description}" /> </p>
+        <p> <input type="submit"/> </p>
+    </form>
+    <hr>
     
+    <h3>Days list</h3>
+    <table>
+        <thead>
+            <tr>
+                <th> id </th>
+                <th> description </th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${allDays.empty}">
+                <td colspan="2"> No Days added </td>
+            </tr>
+            <tr th:each="day : ${allDays}">
+                <td><span th:text="${day.id}"> Title </span></td>
+                <td><span th:text="${day.description}"> Author </span></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <h3>Meals list</h3>
     <table>
         <thead>
             <tr>
