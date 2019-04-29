@@ -9,12 +9,7 @@
 <body>
 
     <h1> MEAL TRACKER </h1>
-    <form action="#" th:action="@{/processForm}" th:object="${simpleNote}"  method="post">
-        <input type="hidden" th:filed="*{id}"/>
-        <p> <input type="text" th:field="*{textFiled}" /> </p>
-        <p> <input type="submit"/> </p>
-    </form>
-    <hr>
+  
     <h3>Add new Day</h3>
     <form action="#" th:action="@{/addDay}" th:object="${dayField}"  method="post">
         <input type="hidden" th:filed="*{id}"/>
@@ -22,26 +17,31 @@
         <p> <input type="submit"/> </p>
     </form>
     <hr>
-    
-    <h3>Days list</h3>
-    <table>
-        <thead>
-            <tr>
-                <th> id </th>
-                <th> description </th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${allDays.empty}">
-                <td colspan="2"> No Days added </td>
-            </tr>
-            <tr th:each="day : ${allDays}">
-                <td><span th:text="${day.id}"> Title </span></td>
-                <td><span th:text="${day.description}"> Author </span></td>
-            </tr>
-        </tbody>
-    </table>
+   
+    <h3> Days list</h3>
+    <div>
+        <tr th:each="day : ${allDays}">
+          <div style="border:1px solid green; margin-bottom: 2px">
+                <h4 th:text="${day.date + ' id:: ' + day.id} ">2019-04-29 id:: 1</h4>
+                <ul>
+                    <li>tu beda notatki dla tego dnia</li>
+                </ul>  
+          </div>  
+            
+        </tr>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <hr>
 
+    <form action="#" th:action="@{/processForm}" th:object="${simpleNote}"  method="post">
+        <input type="hidden" th:filed="*{id}"/>
+        <p> <input type="text" th:field="*{textFiled}" /> </p>
+        <p> <input type="submit"/> </p>
+    </form>
+    <hr>
 
 
 
