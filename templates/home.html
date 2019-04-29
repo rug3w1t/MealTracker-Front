@@ -14,6 +14,29 @@
         <p> <input type="text" th:field="*{textFiled}" /> </p>
         <p> <input type="submit"/> </p>
     </form>
+    <hr>
+    
+    <table>
+        <thead>
+            <tr>
+                <th> id </th>
+                <th> text </th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${allNotes.empty}">
+                <td colspan="2"> No Books Available </td>
+            </tr>
+            <tr th:each="note : ${allNotes}">
+                <td><span th:text="${note.id}"> Title </span></td>
+                <td><span th:text="${note.textFiled}"> Author </span></td>
+            </tr>
+        </tbody>
+    </table>
+    
+
+
+
 
 </body>
 </html>
