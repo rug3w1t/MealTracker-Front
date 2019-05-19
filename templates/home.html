@@ -10,63 +10,12 @@
 
     <h1> MEAL TRACKER </h1>
   
-    <h3>Add new Day</h3>
-    <form action="#" th:action="@{/addDay}" th:object="${dayField}"  method="post">
+    <h3>Add new Note</h3>
+    <form action="#" th:action="@{/addNote}" th:object="${note}"  method="post">
         <input type="hidden" th:filed="*{id}"/>
         <p> <input type="text" th:field="*{description}" /> </p>
         <p> <input type="submit"/> </p>
-    </form>
+    </form> 
     <hr>
-   
-    <h3> Days list</h3>
-    <div>
-        <tr th:each="day : ${allDays}">
-          <div style="border:1px solid green; margin-bottom: 2px">
-                <h4 th:text="${day.date + ' id:: ' + day.id} ">2019-04-29 id:: 1</h4>
-                <ul>
-                    <li>tu beda notatki dla tego dnia</li>
-                </ul>  
-          </div>  
-            
-        </tr>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <hr>
-
-    <form action="#" th:action="@{/processForm}" th:object="${simpleNote}"  method="post">
-        <input type="hidden" th:filed="*{id}"/>
-        <p> <input type="text" th:field="*{textFiled}" /> </p>
-        <p> <input type="submit"/> </p>
-    </form>
-    <hr>
-
-
-
-    <h3>Meals list</h3>
-    <table>
-        <thead>
-            <tr>
-                <th> id </th>
-                <th> text </th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${allNotes.empty}">
-                <td colspan="2"> No Books Available </td>
-            </tr>
-            <tr th:each="note : ${allNotes}">
-                <td><span th:text="${note.id}"> Title </span></td>
-                <td><span th:text="${note.textFiled}"> Author </span></td>
-            </tr>
-        </tbody>
-    </table>
-    
-
-
-
-
 </body>
 </html>
