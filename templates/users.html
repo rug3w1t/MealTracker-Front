@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.thymeleaf.org ">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>meal tracker</title>
+</head>
+<body>
+
+    <h1>Users </h1>
+    <table>
+        <thead>
+            <tr>
+                <th> Id </th>
+                <th> LOGIN </th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${users.empty}">
+                <td colspan="2"> No Users </td>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td><span th:text="${user.id}"> ID </span></td>
+                <td><span th:text="${user.login}"> LOGIN </span></td>
+            </tr>
+        </tbody>
+    </table>
+  
+    
+</body>
+</html>
