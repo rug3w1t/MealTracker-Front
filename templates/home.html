@@ -13,38 +13,39 @@
     <h3>Add new Note</h3>
     <form action="#" th:action="@{/addNote}" th:object="${note}"  method="post">
         <input type="hidden" th:filed="*{id}"/>
-        <p>Type : <input type="text" th:field="*{mealType}" /> </p>
-        <p>Description<input type="text" th:field="*{description}" /> </p>
+        <p>Type :       <input type="text" th:field="*{mealType}" /> </p>
+        <p>Description: <input type="text" th:field="*{description}" /> </p>
         <p> <input type="submit"/> </p>
     </form> 
     <hr>
 
-
     <h1>Notes</h1>
-    <table>
-        <thead>
-            <tr>
-                <th> Id </th>
-                <th> DATE</th>
-                <th> Time</th>
-                <th> Meal Type </th>
-                <th> Meal Description </th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${allNotes.empty}">
-                <td colspan="2"> No Meals </td>
-            </tr>
-            <tr th:each="note : ${allNotes}">
-                <td><span th:text="${note.id}"> ID </span></td>
-                <td><span th:text="${note.date}"> DATE </span></td>
-                <td><span th:text="${note.time}"> TIME </span></td>
-                <td><span th:text="${note.mealType}"> type </span></td>
-                <td><span th:text="${note.description}"> DESCRIPTION </span></td>
-
-            </tr>
-        </tbody>
-    </table>
-
+ 
+    <div th:each="notesMapGroupedByDate : ${groupedNotes}">
+        <!-- Tytuł - sformatowana data grupuje liste posiłków danego dnia-->
+        <h3 th:text="${notesMapGroupedByDate.key}">keyvalue</h3>
+       <!-- Zgrupowana tabela posiłków dla każdej daty -->
+        <table>
+            <thead>
+                <tr>
+                    <th> Time</th>
+                    <th> Meal Type </th>
+                    <th> Meal Description </th>
+                    <th> Id </th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${notesMapGroupedByDate.value.empty}">
+                    <td colspan="2"> No Meals </td>
+                </tr>
+                <tr th:each="note : ${notesMapGroupedByDate.value}">
+                    <td><span th:text="${note.time}"> TIME </span></td>
+                    <td><span th:text="${note.mealType}"> type </span></td>
+                    <td><span th:text="${note.description}"> DESCRIPTION </span></td>
+                    <td><span th:text="${note.id}"> ID </span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
