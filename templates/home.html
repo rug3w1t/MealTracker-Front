@@ -5,47 +5,57 @@
 <head>
     <meta charset="UTF-8">
     <title>meal tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+    <div class="container">
 
-    <h1> MEAL TRACKER </h1>
-  
-    <h3>Add new Note</h3>
-    <form action="#" th:action="@{/addNote}" th:object="${note}"  method="post">
-        <input type="hidden" th:filed="*{id}"/>
-        <p>Type :       <input type="text" th:field="*{mealType}" /> </p>
-        <p>Description: <input type="text" th:field="*{description}" /> </p>
-        <p> <input type="submit"/> </p>
-    </form> 
-    <hr>
+        <h1> MEAL TRACKER </h1>
+    
+        <form class="form-group" action="#" th:action="@{/addNote}" th:object="${note}"  method="post">
+                <input type="hidden" th:filed="*{id}"/>
+                
+                <label for="type" class="col-lg-2 control-label">Type : </label>
+                <textarea type="text" class="form-control" id="type" rows="1" placeholder="what type of meal did tou eat ? (breakfast / cheat meal)" th:field="*{mealType}" ></textarea>
+            
+                <label for="description" class="col-lg-2 control-label">Description : </label>
+                <textarea type="text" class="form-control" id="description" rows="3" placeholder="what did you eat ? " th:field="*{description}" ></textarea>
+            
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </form> 
+        
 
-    <h1>Notes</h1>
- 
-    <div th:each="notesMapGroupedByDate : ${groupedNotes}">
-        <!-- Tytuł - sformatowana data grupuje liste posiłków danego dnia-->
-        <h3 th:text="${notesMapGroupedByDate.key}">keyvalue</h3>
-       <!-- Zgrupowana tabela posiłków dla każdej daty -->
-        <table>
-            <thead>
-                <tr>
-                    <th> Time</th>
-                    <th> Meal Type </th>
-                    <th> Meal Description </th>
-                    <th> Id </th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr th:if="${notesMapGroupedByDate.value.empty}">
-                    <td colspan="2"> No Meals </td>
-                </tr>
-                <tr th:each="note : ${notesMapGroupedByDate.value}">
-                    <td><span th:text="${note.time}"> TIME </span></td>
-                    <td><span th:text="${note.mealType}"> type </span></td>
-                    <td><span th:text="${note.description}"> DESCRIPTION </span></td>
-                    <td><span th:text="${note.id}"> ID </span></td>
-                </tr>
-            </tbody>
-        </table>
+        <h1>Notes</h1>
+    
+        <div th:each="notesMapGroupedByDate : ${groupedNotes}">
+            <!-- Tytuł - sformatowana data grupuje liste posiłków danego dnia-->
+            <h3 th:text="${notesMapGroupedByDate.key}">keyvalue</h3>
+        <!-- Zgrupowana tabela posiłków dla każdej daty -->
+            <table>
+                <thead>
+                    <tr>
+                        <th> Time</th>
+                        <th> Meal Type </th>
+                        <th> Meal Description </th>
+                        <th> Id </th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${notesMapGroupedByDate.value.empty}">
+                        <td colspan="2"> No Meals </td>
+                    </tr>
+                    <tr th:each="note : ${notesMapGroupedByDate.value}">
+                        <td><span th:text="${note.time}"> TIME </span></td>
+                        <td><span th:text="${note.mealType}"> type </span></td>
+                        <td><span th:text="${note.description}"> DESCRIPTION </span></td>
+                        <td><span th:text="${note.id}"> ID </span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
